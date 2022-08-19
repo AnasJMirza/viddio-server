@@ -20,7 +20,7 @@ dotenv.config();
 
 
 
-// app.use('/api/user', userRoutes);
+app.use('/api/user', userRoutes);
 // app.use('/api/video', VideoRoutes);
 // app.use('/api/comment', CommentRoutes);
 app.use('/api/auth', AuthRoutes);
