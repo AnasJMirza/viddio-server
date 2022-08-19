@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+
 import userRoutes from './src/routes/User.js'
 // import VideoRoutes from './src/routes/Video.js'
 // import CommentRoutes from './src/routes/Comment.js'
@@ -12,16 +13,11 @@ import AuthRoutes from './src/routes/Auth.js'
 import { connect } from './src/config/mongodb.js';
 
 const app = express();
+app.use(cookieParser());
+app.use(express.json());
 dotenv.config();
 
 
-
-
-
-
-
-app.use(express.json());
-app.use(cookieParser());
 
 
 // app.use('/api/user', userRoutes);

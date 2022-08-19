@@ -27,11 +27,13 @@ export const signin = async (req, res) => {
     const user = await User.findOne({ name: req.body.name });
     if (!user) {
       res.status(404).send("User not found!");
+      return;
     }
 
     const isCorrect = await bcrypt.compare(req.body.password, user.password);
     if (!isCorrect) {
       res.status(400).send("Wrong Credentials!");
+      return;
     }
 
     const { password, ...others } = user._doc;
@@ -39,9 +41,11 @@ export const signin = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT);
     
     res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
       .status(200)
-      .send(others);
+      .json(others);
   } catch (error) {
     res.send(error);
   }
