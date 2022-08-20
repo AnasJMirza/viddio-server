@@ -10,13 +10,14 @@ export const updateUser = async (req, res) => {
       );
       res.status(200).send(updatedUser);
     } catch (error) {
-        
+        res.send(error);
     }
   } else {
     res.send("You can only update your account...!");
   }
 
 };
+
 export const deleteUser = async (req, res) => {
 
     if (req.params.id === req.user.id){
@@ -31,7 +32,17 @@ export const deleteUser = async (req, res) => {
     }
 
 };
-const getUser = (req, res) => {};
+
+
+export const getUser = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.json(user);
+        
+    } catch (error) {
+        res.send(error)
+    }
+};
 const subscribe = (req, res) => {};
 const unsubscribe = (req, res) => {};
 const like = (req, res) => {};
