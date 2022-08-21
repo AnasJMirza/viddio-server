@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteUser, getUser, updateUser } from '../controllers/User.js';
+import { deleteUser, getUser, subscribe, updateUser } from '../controllers/User.js';
 
 import { varifyToken } from '../middlewares/varifyToken.js';
 
@@ -10,8 +10,9 @@ router.put('/:id', varifyToken, updateUser);
 // Delete a User
 router.delete('/:id', varifyToken, deleteUser);
 // Get a User
-router.get('/:id', getUser);
+router.get('/find/:id', getUser);
 // Subscribe the user
+router.put('/sub/:id', varifyToken, subscribe)
 // unsubscribe the user
 // Like the video
 // dislike the video

@@ -43,7 +43,42 @@ export const getUser = async (req, res) => {
         res.send(error)
     }
 };
-const subscribe = (req, res) => {};
-const unsubscribe = (req, res) => {};
-const like = (req, res) => {};
-const dislike = (req, res) => {};
+export const subscribe = async (req, res) => {
+  try {
+
+    await User.findById(req.user.id, {
+      $push: {subscribedUsers: req.params.id}
+    })
+    await User.findByIdAndUpdate(req.params.id, {
+      $inc: {subscribers: 1}
+    })
+    res.send("Subscription succesfull!")
+    
+  } catch (error) {
+    res.send(error)
+  }
+};
+
+
+
+
+export const unsubscribe = async (req, res) => {
+  try {
+    await User.findById(req.user.id, {
+      $pull: {subscribedUsers: req.params.id}
+    })
+    await User.findByIdAndUpdate(req.params.id, {
+      $inc: {subscribers: -1}
+    })
+    res.send("Unsubscription succesfull!")
+    
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+
+
+
+export const like = (req, res) => {};
+export const dislike = (req, res) => {};
