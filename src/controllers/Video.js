@@ -1,3 +1,4 @@
+import User from "../schemas/User.js";
 import Video from "../schemas/Video.js";
 
 export const addVideo = async (req, res) => {
@@ -83,8 +84,20 @@ export const trending = async (req, res) => {
   }
 };
 
-export const sub = (req, res) => {
+export const sub = async (req, res) => {
   try {
+    const user = await User.findById(res.user.id);
+    if (!user) return res.send("User not found");
+
+    const subscribedChannels = await User.subscribedUsers;
+
+    const list = await Promise.all(
+      subscribedChannels.map((channelId) => {
+        return Video.find({ userId: channelId });
+      })
+    );
+
+    res.json(list);
   } catch (error) {
     res.send(error);
   }
