@@ -18,12 +18,12 @@ export const updateVideo = async (req, res) => {
       return res.status(404).send("Video with this ID does not exist...");
 
     if (req.user.id === video.userId) {
-      const updatedVideo = Video.findByIdAndUpdate(
+      const updatedVideo = await Video.findByIdAndUpdate(
         req.params.id,
         { $set: req.body },
         { new: true }
       );
-      res.json(updateVideo);
+      res.json(updatedVideo);
     } else {
       return res.status(404).send("You can only update your video");
     }
@@ -68,6 +68,7 @@ export const addViews = async (req, res) => {
 };
 
 export const random = async (req, res) => {
+    // $sample is used to collect random videos here...
   try {
     const videos = await Video.aggregate([{ $sample: { size: 40 } }]);
     res.json(videos);
@@ -105,6 +106,7 @@ export const sub = async (req, res) => {
 };
 
 export const getTags = async (req, res) => {
+    // here $in is used to check the array if it is matching with something
   try {
     const tags = req.query.tags.split(",");
     const videos = await Video.find({tags : {$in: tags}}).limit(20);
@@ -115,6 +117,7 @@ export const getTags = async (req, res) => {
 };
 
 export const search = async (req, res) => {
+    // regex is used to match two values. here it is mathing the query with title of the video
     try {
         const query = req.query.q;
         const videos = await Video.find({title: {$regex: query, $options: "i"}});
