@@ -1,20 +1,26 @@
-import express from 'express';
-import { deleteUser, getUser, subscribe, unsubscribe, updateUser } from '../controllers/User.js';
+import express from "express";
+import {
+  deleteUser,
+  getUser,
+  subscribe,
+  unsubscribe,
+  updateUser,
+} from "../controllers/User.js";
 
-import { varifyToken } from '../middlewares/varifyToken.js';
+import { varifyToken } from "../middlewares/varifyToken.js";
 
 const router = express.Router();
 
 // update a User
-router.put('/:id', varifyToken, updateUser);
+router.put("/:id", varifyToken, updateUser);
 // Delete a User
-router.delete('/:id', varifyToken, deleteUser);
+router.delete("/:id", varifyToken, deleteUser);
 // Get a User
-router.get('/find/:id', getUser);
+router.get("/find/:id", getUser);
 // Subscribe the user
-router.put('/sub/:id', varifyToken , subscribe)
+router.put("/sub/:id", varifyToken, subscribe);
 // unsubscribe the user
-router.put('/unsub/:id', varifyToken, unsubscribe)
+router.put("/unsub/:id", varifyToken, unsubscribe);
 // Like the video
 // dislike the video
 

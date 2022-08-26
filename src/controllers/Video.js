@@ -50,7 +50,7 @@ export const deleteVideo = async (req, res) => {
 export const getVideo = async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
-    res.json(video)
+    res.json(video);
   } catch (error) {
     res.send(error);
   }
@@ -103,3 +103,12 @@ export const sub = async (req, res) => {
     res.send(error);
   }
 };
+
+export const getTags = (req, res) => {
+    try {
+        const tags = req.query.tags
+        console.log(tags);
+    } catch (error) {
+        
+    }
+}
