@@ -105,10 +105,11 @@ export const sub = async (req, res) => {
 };
 
 export const getTags = (req, res) => {
-    try {
-        const tags = req.query.tags
-        console.log(tags);
-    } catch (error) {
-        
-    }
-}
+  try {
+    const tags = req.query.tags.split(",");
+    const videos = await Video.find({tags : {$in: tags}}).limit(20);
+    res.json(videos);
+  } catch (error) {
+    res.send(error);
+  }
+};
