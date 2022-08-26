@@ -50,6 +50,7 @@ export const deleteVideo = async (req, res) => {
 export const getVideo = async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
+    res.json(video)
   } catch (error) {
     res.send(error);
   }

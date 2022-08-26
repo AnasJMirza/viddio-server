@@ -12,3 +12,5 @@ router.put('/view/:id', addViews);
 router.get('/random', random);
 router.get('/trend', trending);
 router.get('/sub', varifyToken , sub);
+
+export default router;

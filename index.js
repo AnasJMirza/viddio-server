@@ -3,7 +3,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 
 import userRoutes from './src/routes/User.js'
-// import VideoRoutes from './src/routes/Video.js'
+import videoRoutes from './src/routes/Video.js'
 // import CommentRoutes from './src/routes/Comment.js'
 import AuthRoutes from './src/routes/Auth.js'
 
@@ -20,10 +20,10 @@ dotenv.config();
 
 
 
-app.use('/api/user', userRoutes);
-// app.use('/api/video', VideoRoutes);
-// app.use('/api/comment', CommentRoutes);
 app.use('/api/auth', AuthRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/video', videoRoutes);
+// app.use('/api/comment', CommentRoutes);
 
 
 
