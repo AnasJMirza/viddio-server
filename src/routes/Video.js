@@ -6,6 +6,7 @@ import {
   getTags,
   getVideo,
   random,
+  search,
   sub,
   trending,
   updateVideo,
@@ -23,6 +24,6 @@ router.get("/random", random);
 router.get("/trend", trending);
 router.get("/sub", varifyToken, sub);
 router.get("/tags", getTags);
-router.get("/search", sub);
+router.get("/search", search);
 
 export default router;

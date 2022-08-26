@@ -104,7 +104,7 @@ export const sub = async (req, res) => {
   }
 };
 
-export const getTags = (req, res) => {
+export const getTags = async (req, res) => {
   try {
     const tags = req.query.tags.split(",");
     const videos = await Video.find({tags : {$in: tags}}).limit(20);
@@ -113,3 +113,13 @@ export const getTags = (req, res) => {
     res.send(error);
   }
 };
+
+export const search = async (req, res) => {
+    try {
+        const query = req.query.q;
+        const videos = await Video.find({title: {$regex: query, $options: "i"}});
+        res.json(videos)
+    } catch (error) {
+        res.send(error)
+    }
+}
