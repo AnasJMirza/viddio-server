@@ -67,29 +67,30 @@ export const unsubscribe = async (req, res) => {
   }
 };
 
-export const like = (req, res) => {
+export const like = async (req, res) => {
   const id = req.user.id;
-  const videoId = req.params.id;
+  const videoId = req.params.videoId;
   try {
-    const video = Video.findByIdAndUpdate(videoId, {
+    await Video.findByIdAndUpdate(videoId, {
       $addToSet: { likes: id },
       $pull: { dislikes: id },
     });
 
-    res.json(video);
+    res.json("The video has been liked");
   } catch (error) {
     res.send(error);
   }
 };
-export const dislike = (req, res) => {
+
+export const dislike = async (req, res) => {
   const id = req.user.id;
-  const videoId = req.params.id;
+  const videoId = req.params.videoId;
   try {
-    const video = Video.findOneAndUpdate(videoId, {
-      $addToSet: { dislikes: id },
-      $pull: { likes: id },
+    await Video.findByIdAndUpdate(videoId, {
+      $addToSet:{ dislikes:id },
+      $pull:{ likes:id },
     });
-    res.json(video);
+    res.json("The video has been disliked");
   } catch (error) {
     res.send(error);
   }
