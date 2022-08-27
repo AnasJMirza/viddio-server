@@ -7,7 +7,7 @@ const CommnetSchema = new mongoose.Schema(
       required: true,
     },
 
-    VideoId: {
+    videoId: {
       type: String,
       required: true,
     },

@@ -1,4 +1,5 @@
 import User from "../schemas/User.js";
+import Video from "../schemas/Video.js";
 
 export const updateUser = async (req, res) => {
   if (req.params.id === req.user.id) {
@@ -66,5 +67,30 @@ export const unsubscribe = async (req, res) => {
   }
 };
 
-export const like = (req, res) => {};
-export const dislike = (req, res) => {};
+export const like = (req, res) => {
+  const id = req.user.id;
+  const videoId = req.params.id;
+  try {
+    const video = Video.findByIdAndUpdate(videoId, {
+      $addToSet: { likes: id },
+      $pull: { dislikes: id },
+    });
+
+    res.json(video);
+  } catch (error) {
+    res.send(error);
+  }
+};
+export const dislike = (req, res) => {
+  const id = req.user.id;
+  const videoId = req.params.id;
+  try {
+    const video = Video.findOneAndUpdate(videoId, {
+      $addToSet: { dislikes: id },
+      $pull: { likes: id },
+    });
+    res.json(video);
+  } catch (error) {
+    res.send(error);
+  }
+};

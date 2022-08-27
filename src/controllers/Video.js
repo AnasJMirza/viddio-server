@@ -108,6 +108,7 @@ export const sub = async (req, res) => {
 export const getTags = async (req, res) => {
     // here $in is used to check the array if it is matching with something
   try {
+    
     const tags = req.query.tags.split(",");
     const videos = await Video.find({tags : {$in: tags}}).limit(20);
     res.json(videos);
