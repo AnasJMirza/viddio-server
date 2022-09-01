@@ -50,3 +50,14 @@ export const signin = async (req, res) => {
     res.send(error);
   }
 };
+
+const googleAuth = async (req, res) => {
+  try {
+    const user = await User.findOne({email: req.body.email})
+    if(user){
+      
+    }
+  } catch (error) {
+    
+  }
+}

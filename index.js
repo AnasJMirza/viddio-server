@@ -1,6 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import cors from 'cors';
 
 import userRoutes from './src/routes/User.js'
 import videoRoutes from './src/routes/Video.js'
@@ -15,6 +16,7 @@ import { connect } from './src/config/mongodb.js';
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 dotenv.config();
 
 
