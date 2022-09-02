@@ -3,7 +3,8 @@ import jwt from "jsonwebtoken";
 export const varifyToken = (req, res, next) => {
   // check if the token exist or not
   const token = req.cookies.access_token;
-  if (!token) return res.status(401).send("You are not authenticated...!");
+  console.log("token", token);
+  if (!token) return res.status(401).send("You are not authenticated Anas");
 
   // Check if the token is valid or not
   jwt.verify(token, process.env.JWT, (err, user) => {

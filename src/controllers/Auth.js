@@ -29,7 +29,7 @@ export const signin = async (req, res) => {
       return;
     }
 
-    const isCorrect = await bcrypt.compare(req.body.password, user.password);
+    const isCorrect = bcrypt.compare(req.body.password, user.password);
     if (!isCorrect) {
       res.status(400).send("Wrong Credentials!");
       return;
@@ -38,10 +38,11 @@ export const signin = async (req, res) => {
     const { password, ...others } = user._doc;
 
     const token = jwt.sign({ id: user._id }, process.env.JWT);
+    
 
     res
       .cookie("access_token", token, {
-        httpOnly: true,
+        httpOnly: true
       })
       .status(200)
       .json(others);

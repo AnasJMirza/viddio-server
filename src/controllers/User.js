@@ -68,6 +68,7 @@ export const unsubscribe = async (req, res) => {
 };
 
 export const like = async (req, res) => {
+  
   const id = req.user.id;
   const videoId = req.params.videoId;
   try {

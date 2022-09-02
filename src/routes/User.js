@@ -11,6 +11,7 @@ import {
 
 import { varifyToken } from "../middlewares/varifyToken.js";
 
+
 const router = express.Router();
 
 // update a User
@@ -23,7 +24,7 @@ router.get("/find/:id", getUser);
 router.put("/sub/:id", varifyToken, subscribe);
 // unsubscribe the user
 router.put("/unsub/:id", varifyToken, unsubscribe);
-// Like the video
+// Like the video 
 router.put("/like/:videoId", varifyToken, like);
 // dislike the video
 router.put("/dislike/:videoId", varifyToken, dislike);
