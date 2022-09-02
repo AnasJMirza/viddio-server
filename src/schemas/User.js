@@ -16,11 +16,16 @@ const UserSchema = new mongoose.Schema(
 
     password: {
       type: String,
-      required: true,
+      
     },
 
     img: {
       type: String,
+    },
+
+    fromGoogle: {
+      type: Boolean,
+      default: false
     },
 
     subscribers: {
