@@ -14,9 +14,12 @@ import AuthRoutes from './src/routes/Auth.js'
 import { connect } from './src/config/mongodb.js';
 
 const app = express();
+app.use(cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+}));
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
 dotenv.config();
 
 
