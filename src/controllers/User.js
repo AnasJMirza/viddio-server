@@ -41,6 +41,7 @@ export const getUser = async (req, res) => {
 };
 export const subscribe = async (req, res) => {
   try {
+    console.log("Sub it is");
     await User.findByIdAndUpdate(req.user.id, {
       $push: { subscribedUsers: req.params.id },
     });
@@ -55,6 +56,7 @@ export const subscribe = async (req, res) => {
 
 export const unsubscribe = async (req, res) => {
   try {
+    console.log("Unsub it is");
     await User.findByIdAndUpdate(req.user.id, {
       $pull: { subscribedUsers: req.params.id },
     });
@@ -72,6 +74,7 @@ export const like = async (req, res) => {
   const id = req.user.id;
   const videoId = req.params.videoId;
   try {
+    
     await Video.findByIdAndUpdate(videoId, {
       $addToSet: { likes: id },
       $pull: { dislikes: id },
