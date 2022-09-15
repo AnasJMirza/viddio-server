@@ -27,7 +27,7 @@ export const deleteComment = async (req, res) => {
 
 export const getAllComment = async (req, res) => {
   try {
-    const allComments = await Comment.find({ VideoId: req.params.videoId });
+    const allComments = await Comment.find({ videoId: req.params.videoId });
     res.json(allComments);
   } catch (error) {
     res.send(error);
