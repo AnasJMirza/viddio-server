@@ -29,6 +29,9 @@ app.use('/api/auth', AuthRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/video', videoRoutes);
 app.use('/api/comment', CommentRoutes);
+app.get('/', (req, res)=>{
+    res.send("OKAY IM RUNNING")
+})
 
 
 
