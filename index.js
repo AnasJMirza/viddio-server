@@ -16,7 +16,7 @@ import { connect } from './src/config/mongodb.js';
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://hosting-6adeb.firebaseapp.com",
 }));
 app.use(cookieParser());
 app.use(express.json());
