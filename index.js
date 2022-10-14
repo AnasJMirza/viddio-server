@@ -8,6 +8,7 @@ import videoRoutes from './src/routes/Video.js'
 import CommentRoutes from './src/routes/Comment.js'
 import AuthRoutes from './src/routes/Auth.js'
 
+// idk
 
 
 // Database Connection file
