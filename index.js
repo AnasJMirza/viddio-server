@@ -15,10 +15,19 @@ import AuthRoutes from './src/routes/Auth.js'
 import { connect } from './src/config/mongodb.js';
 
 const app = express();
-app.use(cors({
-    credentials: true,
-    origin: "https://hosting-6adeb.firebaseapp.com",
-}));
+// app.use(cors({
+    // credentials: true,
+    // origin: "https://hosting-6adeb.firebaseapp.com",
+    // origin: "http://localhost:3000",
+// }));
+// app.use(cors());
+// const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 dotenv.config();
