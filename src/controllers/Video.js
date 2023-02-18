@@ -69,7 +69,6 @@ export const addViews = async (req, res) => {
 
 export const random = async (req, res) => {
     // $sample is used to collect random videos here...
-    console.log("calling");
   try {
     const videos = await Video.aggregate([{ $sample: { size: 40 } }]);
     res.json(videos);

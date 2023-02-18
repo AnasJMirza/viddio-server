@@ -23,7 +23,7 @@ const app = express();
 // app.use(cors());
 // const cors = require('cors');
 const corsOptions ={
-    origin:'https://hosting-6adeb.firebaseapp.com', 
+    origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
